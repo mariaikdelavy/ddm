@@ -12,26 +12,38 @@
         android:layout_width="276dp"
         android:layout_height="131dp"
         android:fontFamily="cursive"
-        android:text="Contador"
+        android:text="Counter"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="80sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.468" />
+        app:layout_constraintVertical_bias="0.17" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="175dp"
         android:layout_height="49dp"
-        android:text="Clique aqui"
+        android:text="Increese here"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv"
         app:layout_constraintVertical_bias="0.074" />
+
+    <Button
+        android:id="@+id/btnrdn"
+        android:layout_width="175dp"
+        android:layout_height="49dp"
+        android:text="Random Number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv"
+        app:layout_constraintVertical_bias="0.677" />
 
     <Button
         android:id="@+id/btnreset"
@@ -44,5 +56,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button"
         app:layout_constraintVertical_bias="0.05" />
+
+    <EditText
+        android:id="@+id/etMin"
+        android:layout_width="85dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="68dp"
+        android:text="0"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/btnrdn"
+        app:layout_constraintEnd_toStartOf="@+id/etMax"
+        app:layout_constraintHorizontal_bias="0.057"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnreset"
+        app:layout_constraintVertical_bias="0.74" />
+
+    <EditText
+        android:id="@+id/etMax"
+        android:layout_width="85dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="72dp"
+        android:text="100"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/btnrdn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnreset"
+        app:layout_constraintVertical_bias="0.74" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
