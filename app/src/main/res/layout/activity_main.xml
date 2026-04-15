@@ -7,80 +7,47 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="276dp"
-        android:layout_height="131dp"
-        android:fontFamily="cursive"
-        android:text="Counter"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="80sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <EditText
+        android:id="@+id/edPeso"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Peso"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.17" />
+        tools:layout_editor_absoluteY="114dp" />
+
+    <EditText
+        android:id="@+id/edAltura"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Altura"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="169dp" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="175dp"
-        android:layout_height="49dp"
-        android:text="Increese here"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Calcular IMC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="50"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="237dp" />
+
+    <TextView
+        android:id="@+id/textCalculadoraIMC"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Calculadora IMC"
+        android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv"
-        app:layout_constraintVertical_bias="0.074" />
-
-    <Button
-        android:id="@+id/btnrdn"
-        android:layout_width="175dp"
-        android:layout_height="49dp"
-        android:text="Random Number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv"
-        app:layout_constraintVertical_bias="0.677" />
-
-    <Button
-        android:id="@+id/btnreset"
-        android:layout_width="92dp"
-        android:layout_height="49dp"
-        android:text="Reset"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.05" />
-
-    <EditText
-        android:id="@+id/etMin"
-        android:layout_width="85dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="68dp"
-        android:text="0"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/btnrdn"
-        app:layout_constraintEnd_toStartOf="@+id/etMax"
-        app:layout_constraintHorizontal_bias="0.057"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnreset"
-        app:layout_constraintVertical_bias="0.74" />
-
-    <EditText
-        android:id="@+id/etMax"
-        android:layout_width="85dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="72dp"
-        android:text="100"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/btnrdn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnreset"
-        app:layout_constraintVertical_bias="0.74" />
-
+        tools:layout_editor_absoluteY="35dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
