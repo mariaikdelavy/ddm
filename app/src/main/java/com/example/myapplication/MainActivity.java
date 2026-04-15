@@ -1,66 +1,58 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.Random;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView textView;
-    EditText etMin;
-    EditText etMax;
-    Button button;
-    Button btnreset;
-    Button btnrnd;
-    int c=0;
+    Button buttonAvancar, buttonVoltar;
+    ImageView imageView;
+    int imagens[] = new int []{R.drawable.cachorro,
+            R.drawable.gardem,
+            R.drawable.happy,
+            R.drawable.patinho,
+            R.drawable.porquinho};
 
+    int posicao = 0;
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        buttonAvancar=findViewById(R.id.btnAvancar);
+        buttonVoltar=findViewById(R.id.btnVoltar);
+        imageView=findViewById(R.id.imageView);
 
-        textView=findViewById(R.id.tv);
-        etMin=findViewById(R.id.etMin);
-        etMax=findViewById(R.id.etMax);
-        button=findViewById(R.id.button);
-        btnreset=findViewById(R.id.btnreset);
-        btnrnd=findViewById(R.id.btnrdn);
-        textView.setText("0");
-
-        // Botão de incremento
-        button.setOnClickListener(v -> {
-            c++;
-            textView.setText(Integer.toString(c));
+        buttonAvancar.setOnClickListener(v -> {
+            posicao++;
+            if(posicao >= imagens.length){
+                posicao = 0;
+            }
+            imageView.setImageResource(imagens[posicao]);
         });
 
-        // Botão de reset
-        btnreset.setOnClickListener(v -> {
-            textView.setText("0");
-            c=0;
-            etMin.setText("0");
-            etMax.setText("100");
+        buttonVoltar.setOnClickListener(v -> {
+            posicao--;
+            if(posicao < 0){
+                posicao = imagens.length - 1;
+            }
+            imageView.setImageResource(imagens[posicao]);
         });
 
-        // Botão de número aleatório
-        btnrnd.setOnClickListener(v -> {
-            String minText = etMin.getText().toString();
-            String maxText = etMax.getText().toString();
-            int min = Integer.parseInt(etMin.getText().toString());
-            int max = Integer.parseInt(etMax.getText().toString());
-
-            Random random = new Random();
-            int randomNumber = random.nextInt((max - min) + 1) + min;
-
-            textView.setText(Integer.toString(randomNumber));
-            c = randomNumber;
-        });
     }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        imageView.setImageResource(imagens[0]);
+    }
+
 }

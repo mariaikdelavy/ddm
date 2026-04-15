@@ -7,80 +7,38 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="276dp"
-        android:layout_height="131dp"
-        android:fontFamily="cursive"
-        android:text="Counter"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="80sp"
+    <Button
+        android:id="@+id/btnVoltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Voltar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.17" />
+        app:layout_constraintVertical_bias="0.956" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="175dp"
-        android:layout_height="49dp"
-        android:text="Increese here"
+        android:id="@+id/btnAvancar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Avançar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv"
-        app:layout_constraintVertical_bias="0.074" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.956" />
 
-    <Button
-        android:id="@+id/btnrdn"
-        android:layout_width="175dp"
-        android:layout_height="49dp"
-        android:text="Random Number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv"
-        app:layout_constraintVertical_bias="0.677" />
-
-    <Button
-        android:id="@+id/btnreset"
-        android:layout_width="92dp"
-        android:layout_height="49dp"
-        android:text="Reset"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.05" />
-
-    <EditText
-        android:id="@+id/etMin"
-        android:layout_width="85dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="68dp"
-        android:text="0"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/btnrdn"
-        app:layout_constraintEnd_toStartOf="@+id/etMax"
-        app:layout_constraintHorizontal_bias="0.057"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnreset"
-        app:layout_constraintVertical_bias="0.74" />
-
-    <EditText
-        android:id="@+id/etMax"
-        android:layout_width="85dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="72dp"
-        android:text="100"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/btnrdn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnreset"
-        app:layout_constraintVertical_bias="0.74" />
-
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/btnAvancar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnVoltar"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="88dp"
+        tools:srcCompat="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>
