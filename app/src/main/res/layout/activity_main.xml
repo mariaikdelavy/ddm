@@ -11,43 +11,68 @@
         android:id="@+id/edPeso"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Peso"
+        android:minHeight="48dp"
+        android:layout_marginTop="30dp"
+        android:hint="Peso (kg)"
+        android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="114dp" />
+        app:layout_constraintTop_toBottomOf="@id/textCalculadoraIMC" />
 
     <EditText
         android:id="@+id/edAltura"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Altura"
+        android:minHeight="48dp"
+        android:layout_marginTop="16dp"
+        android:hint="Altura (m)"
+        android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="169dp" />
+        app:layout_constraintTop_toBottomOf="@id/edPeso" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="0dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="Calcular IMC"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="50"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="237dp" />
+        app:layout_constraintTop_toBottomOf="@id/edAltura" />
 
     <TextView
         android:id="@+id/textCalculadoraIMC"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:text="Calculadora IMC"
-        android:textSize="50dp"
+        android:textSize="28sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="35dp" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvIMC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="IMC: --"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="Imagem do IMC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvIMC" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
