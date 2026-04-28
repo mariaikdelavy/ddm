@@ -34,8 +34,21 @@ public class MainActivity extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
 
         b.setOnClickListener((v -> {
-            Double peso=Double.parseDouble(edpeso.getText().toString());
-            Double altura=Double.parseDouble(edaltura.getText().toString());
+            String strPeso = edpeso.getText().toString();
+            String strAltura = edaltura.getText().toString();
+            if(strPeso.isEmpty()){
+                edpeso.setError("Informe o peso");
+                edpeso.requestFocus();
+                return;
+            }
+            if(strAltura.isEmpty()){
+                edaltura.setError("Informe a altura");
+                edaltura.requestFocus();
+                return;
+            }
+
+            Double peso=Double.parseDouble(strPeso);
+            Double altura=Double.parseDouble(strAltura);
             double imc = peso/(altura * altura);
             DecimalFormat dc = new DecimalFormat("##.##");
             tvIMC.setText(dc.format(imc));
