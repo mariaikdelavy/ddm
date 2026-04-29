@@ -1,6 +1,9 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,5 +23,18 @@ public class MainActivity2 extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        Button b = findViewById(R.id.button_fim);
+        b.setOnClickListener(v -> {finish();});
+
+
+        Intent i = getIntent();
+        Bundle bundle = i.getExtras();
+        Double peso = bundle.getDouble("pesoUsr");
+        Double altura = bundle.getDouble("alturaUsr");
+        double imc = peso / (altura * altura);
+
+        TextView resultado = findViewById(R.id.textResultado);
+        resultado.setText("IMC: " + imc);
     }
 }
