@@ -9,44 +9,45 @@
     tools:context=".SimplePaint">
 
 
-    <com.example.myapplication.SimplePaint
-        android:id="@+id/simplePaint"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="430dp"
+        android:layout_height="690dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonMudaCor" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/buttonMudaCor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Color"
-        tools2:layout_editor_absoluteX="19dp"
-        tools2:layout_editor_absoluteY="15dp"
-        tools2:ignore="MissingConstraints" />
+    </FrameLayout>
 
-    <ImageButton
-        android:id="@+id/imageCirculo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonMudaCor"
-        app:srcCompat="?android:attr/listChoiceIndicatorSingle"
-        tools2:layout_editor_absoluteX="107dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+        tools2:layout_editor_absoluteX="3dp">
 
-    <ImageButton
-        android:id="@+id/imageTraco"
-        android:layout_width="49dp"
-        android:layout_height="52dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/imageCirculo"
-        app:layout_constraintTop_toTopOf="@+id/imageCirculo"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/dedinho"
-        tools2:layout_editor_absoluteX="163dp" />
+        <Button
+            android:id="@+id/buttonA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="A" />
 
+        <Button
+            android:id="@+id/buttonB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="B" />
+
+        <Button
+            android:id="@+id/buttonC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="C" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

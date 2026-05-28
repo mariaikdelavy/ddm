@@ -1,12 +1,16 @@
 package com.example.myapplication;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
 import com.skydoves.colorpickerview.ColorEnvelope;
@@ -14,49 +18,40 @@ import com.skydoves.colorpickerview.ColorPickerDialog;
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
 
 public class  MainActivity extends AppCompatActivity {
-    Button buttonMudaCor;
-    SimplePaint simplePaint;
-    ImageButton buttonCirculo, buttonLivre;
-    public void mudaCor(ColorEnvelope envelope){
-        simplePaint.mudaCor(envelope.getColor());
-    }
+    FrameLayout frameLayout;
+    FragmentoA fragmentoA;
+    FragmentoB fragmentoB;
+    Button buttonA, buttonB;
 
-    @SuppressLint("WrongViewCast")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        buttonMudaCor = findViewById(R.id.buttonMudaCor);
-        simplePaint = findViewById(R.id.simplePaint);
-        buttonCirculo = findViewById(R.id.imageCirculo);
-        buttonLivre = findViewById(R.id.imageTraco);
+        buttonA = findViewById(R.id.buttonA);
+        buttonB = findViewById(R.id.buttonB);
 
-        buttonLivre.setOnClickListener(v -> {simplePaint.mudarParaLivre();});
-        buttonCirculo.setOnClickListener(v -> {simplePaint.mudarParaCirculo();});
+        //Inicialização gerenciador de fragments
+        FragmentManager fragmentManager = getSupportFragmentManager();
 
-        buttonMudaCor.setOnClickListener(v -> {
-            new ColorPickerDialog.Builder(this)
-                    .setTitle("Selecione a cor do desenho")
-                    .setPreferenceName("MyColorPickerDialog")
-                    .setPositiveButton("Confirmar",
-                            new ColorEnvelopeListener() {
-                                @Override
-                                public void onColorSelected(ColorEnvelope envelope, boolean fromUser) {
-                                    mudaCor(envelope);
-                                }
-                            })
-                    .setNegativeButton("Cancelar",
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.dismiss();
-                                }
-                            })
-                    .attachAlphaSlideBar(true) // the default value is true.
-                    .attachBrightnessSlideBar(true)  // the default value is true.
-                    .setBottomSpace(12) // set a bottom space between the last slidebar and buttons.
-                    .show();
+        //Inicia uma transação com FragmentManager
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        //Adicionamos o container e o objeto do nosso fragmentoA para exibir
+        transaction.add(R.id.frameLayout, new FragmentoA());
+
+        //Finalizamos a transação do fragment com commit
+        transaction.commit();
+
+        buttonA.setOnClickListener(v -> {
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            ft.replace(R.id.frameLayout, new FragmentoA());
+            ft.commit();
         });
 
+        buttonB.setOnClickListener(v -> {
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            ft.replace(R.id.frameLayout, new FragmentoB());
+            ft.commit();
+        });
     }
 }
