@@ -1,57 +1,56 @@
 package com.example.myapplication;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Insets;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.skydoves.colorpickerview.ColorEnvelope;
 import com.skydoves.colorpickerview.ColorPickerDialog;
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
 
 public class  MainActivity extends AppCompatActivity {
-    FrameLayout frameLayout;
-    FragmentoA fragmentoA;
-    FragmentoB fragmentoB;
-    Button buttonA, buttonB;
+
+    ListView lv;
+    String nomes [] = new String[] {"João", "Hudson", "Maria"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        buttonA = findViewById(R.id.buttonA);
-        buttonB = findViewById(R.id.buttonB);
+        lv = findViewById(R.id.listView);
 
-        //Inicialização gerenciador de fragments
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        //configurando adaptador (contexto, layout, id dentro do layout, dados)
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                getApplicationContext(),
+                android.R.layout.simple_list_item_1,
+                android.R.id.text1,
+                nomes
+        );
+        lv.setAdapter(adapter);
 
-        //Inicia uma transação com FragmentManager
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-        //Adicionamos o container e o objeto do nosso fragmentoA para exibir
-        transaction.add(R.id.frameLayout, new FragmentoA());
-
-        //Finalizamos a transação do fragment com commit
-        transaction.commit();
-
-        buttonA.setOnClickListener(v -> {
-            FragmentTransaction ft = fragmentManager.beginTransaction();
-            ft.replace(R.id.frameLayout, new FragmentoA());
-            ft.commit();
-        });
-
-        buttonB.setOnClickListener(v -> {
-            FragmentTransaction ft = fragmentManager.beginTransaction();
-            ft.replace(R.id.frameLayout, new FragmentoB());
-            ft.commit();
-        });
+        lv.setOnItemClickListener(((parent, view, position, id) -> {
+            Toast.makeText(this, nomes[position], Toast.LENGTH_LONG).show();
+            Intent i = new Intent(getApplicationContext(), ActivityExibeDados.class);
+            i.putExtra("user", nomes[position]);
+            startActivity(i);
+        }));
     }
 }
