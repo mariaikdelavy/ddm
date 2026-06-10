@@ -1,34 +1,38 @@
 package com.example.myapplication;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-    TextView textView;
-    Button button;
-    int c=0;
-    @SuppressLint("MissingInflatedId")
+
+    EditText etMin, etMax;
+    Button btnGerar;
+    TextView tvResultado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = findViewById(R.id.tv);
-        button = findViewById(R.id.button);
 
-        textView.setText("MorreLoca");
+        etMin = findViewById(R.id.etMin);
+        etMax = findViewById(R.id.etMax);
+        btnGerar = findViewById(R.id.btnGerar);
+        tvResultado = findViewById(R.id.tvResultado);
 
-        textView.setOnClickListener(v -> {
-            TextView tv = (TextView)v;
-            c++;
-            tv.setText(Integer.toString(c));
+        btnGerar.setOnClickListener(v -> {
+            int min = Integer.parseInt(etMin.getText().toString());
+            int max = Integer.parseInt(etMax.getText().toString());
+
+            Random random = new Random();
+            int numero = random.nextInt(max - min + 1) + min;
+
+            tvResultado.setText("Número gerado: " + numero);
         });
     }
 }
