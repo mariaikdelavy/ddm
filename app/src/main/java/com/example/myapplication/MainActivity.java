@@ -23,12 +23,11 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.tv);
         button = findViewById(R.id.button);
 
-        textView.setText("MorreLoca");
+        textView.setText("0");
 
-        textView.setOnClickListener(v -> {
-            TextView tv = (TextView)v;
+        button.setOnClickListener(v -> {
             c++;
-            tv.setText(Integer.toString(c));
+            textView.setText(String.valueOf(c));
         });
     }
 }
