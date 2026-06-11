@@ -1,8 +1,6 @@
 package com.example.myapplication;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,21 +8,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class ActivityExibeDados extends AppCompatActivity {
+public class ActivityFormularioLinear extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main_exige_dados);
+        setContentView(R.layout.activity_formulario_linear);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        Intent i = getIntent(); //recupera a intenção
-        Bundle b = i.getExtras(); //recupera o bundle que veio com a intenção
-        String nome = b.getString("user"); //recupera a string contida no bundle
-        ((TextView)findViewById(R.id.textViewExibeNome)).setText(nome);
     }
 }
