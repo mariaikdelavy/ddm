@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.widget.Button;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv;
     private Button buttonLoc;
     private MapView mapView;
+    private Marker marcadorPosicaoAtual;
     private static final int PERMISSION_REQUEST_CODE = 1;
 
     @Override
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         Configuration.getInstance().setUserAgentValue(getPackageName());
 
+        mapinit();
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         // Configura o clique do botão
@@ -59,23 +62,35 @@ public class MainActivity extends AppCompatActivity {
         }
 
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, location -> {
-            tv.setText("Latitude: " + location.getLatitude() + "\nLongitude: " + location.getLongitude());
-                mapView.setMultiTouchControls(true);
-                //mapView.getController().setZoom(15.0);
-                double latitude = location.getLatitude();
-                double longitude = location.getLongitude();
-                GeoPoint userLocation = new GeoPoint(latitude, longitude);
-                mapView.getController().setCenter(userLocation);
-                mapView.getController().setZoom(18.0);
-                mapView.getController().animateTo(userLocation);
-                Marker marker = new Marker(mapView);
-                marker.setPosition(userLocation);
-                marker.setTitle("Você está aqui!");
-                mapView.getOverlays().add(marker);
+            tv.setText("Latitude: " + location.getLatitude() +
+                        "\nLongitude: " + location.getLongitude() +
+                        "\nAltitude: " + location.getLongitude() +
+                        "\nVelocidade: " + location.getSpeed());
+                showLocationOnMap(location);
         });
 
     }
 
+    public void mapinit(){
+        mapView.setMultiTouchControls(true);
+    }
+
+    public void showLocationOnMap(Location location){
+        double latidude = location.getLatitude();
+        double longitude = location.getLongitude();
+        GeoPoint mLocation = new GeoPoint(latidude, longitude);
+        mapView.getController().setCenter(mLocation);
+        mapView.getController().setCenter(mLocation);
+        mapView.getController().setZoom(18.0);
+        mapView.getController().animateTo(mLocation);
+        //adiciona um overlay para mostrar localização atual (marker)
+        if(marcadorPosicaoAtual == null){
+            marcadorPosicaoAtual = new Marker(mapView);
+        }
+        marcadorPosicaoAtual.setPosition(mLocation);
+        marcadorPosicaoAtual.setTitle("Minha localização");
+        mapView.getOverlays().add(marcadorPosicaoAtual);
+    }
     private void checkLocationPermission() {
         if (!hasLocationPermission()) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_REQUEST_CODE);
