@@ -11,4 +11,3 @@ Ex: FrameLayout --> oganizador simples (pilha) por isso só precisa saber se a V
 Ex: LinearLayout --> organizador em fila, precisa saber se uma View deve crescer mais que as outras para preencher a tela.
 Ex: ConstraintLayout --> organizador por amarras (elásticos), precisa saber qual lado da View está amarrado em qual parede, ou seja, se prendermos em todas ele fica no centro.
 
-3

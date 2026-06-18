@@ -1,2 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+    <string name="app_name">ListaAndroid</string>
+
+    <string name="hint_nome">Nome</string>
+    <string name="hint_endereco">Endereço</string>
+    <string name="hint_cidade">Cidade</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_telefone">Telefone</string>
+    <string name="hint_cep">CEP</string>
+    <string name="hint_aniversario">Aniversário</string>
+
+    <string name="desc_calendario">Abrir calendário</string>
+
+    <string name="btn_salvar">Salvar</string>
+
+    <string-array name="estados_brasil">
+        <item>Selecione o estado</item>
+        <item>AC</item>
+        <item>AL</item>
+        <item>AP</item>
+        <item>AM</item>
+        <item>BA</item>
+        <item>CE</item>
+        <item>DF</item>
+        <item>ES</item>
+        <item>GO</item>
+        <item>MA</item>
+        <item>MT</item>
+        <item>MS</item>
+        <item>MG</item>
+        <item>PA</item>
+        <item>PB</item>
+        <item>PR</item>
+        <item>PE</item>
+        <item>PI</item>
+        <item>RJ</item>
+        <item>RN</item>
+        <item>RS</item>
+        <item>RO</item>
+        <item>RR</item>
+        <item>SC</item>
+        <item>SP</item>
+        <item>SE</item>
+        <item>TO</item>
+    </string-array>
+
+</resources>
