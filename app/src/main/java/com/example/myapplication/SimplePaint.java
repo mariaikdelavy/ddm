@@ -26,6 +26,8 @@ public class SimplePaint extends View {
     public final String TRACOLIVRE = "tracoLivre";
     public final String TRACOCIRCULO = "tracoCirculo";
     public final String TRACOQUADRADO = "tracoQuadrado";
+    public final String TRACOLINHA = "tracoLinha";
+
     public void mudarParaCirculo(){
         modoTraco = TRACOCIRCULO;
     }
@@ -33,7 +35,10 @@ public class SimplePaint extends View {
         modoTraco = TRACOLIVRE;
     }
     public void mudarParaQuadrado(){
-        modoTraco = TRACOQUADRADO
+        modoTraco = TRACOQUADRADO;
+    }
+    public void mudarParaLinha(){
+        modoTraco = TRACOLINHA;
     }
 
     float x0, y0;
@@ -60,6 +65,7 @@ public class SimplePaint extends View {
         correntPaint.setColor(Color.BLACK);
         correntPaint.setStrokeWidth(10);
         correntPaint.setStyle(Paint.Style.STROKE);
+        correntPaint.setAntiAlias(true);
         listPath = new ArrayList<>();
         listPaint = new ArrayList<>();
     }
@@ -78,37 +84,56 @@ public class SimplePaint extends View {
     @Override
     protected void onDraw(@NonNull Canvas canvas){
         super.onDraw(canvas);
-        canvas.drawPath(correntPath, correntPaint);
 
-        for(int i =0; i <= listPath.size() - 1; i++){
+        for(int i = 0; i <= listPath.size() - 1; i++){
             canvas.drawPath(listPath.get(i), listPaint.get(i));
-
         }
+
+        canvas.drawPath(correntPath, correntPaint);
     }
+
     @Override
     public boolean onTouchEvent(MotionEvent event){
         switch(event.getAction()){
             case MotionEvent.ACTION_DOWN:
-                x0=event.getX(); y0=event.getY();
-                correntPath.lineTo(event.getX(),event.getY());
-                Log.d("coordenadas", Float.toString(event.getX()) + Float.toString(event.getY()));
-
+                x0 = event.getX();
+                y0 = event.getY();
+                correntPath.moveTo(x0, y0);
+                Log.d("coordenadas", x0 + "," + y0);
                 break;
+
             case MotionEvent.ACTION_MOVE:
-                Log.d("coordenadas", Float.toString(event.getX()) + Float.toString(event.getY()));
+                float x1 = event.getX();
+                float y1 = event.getY();
+                Log.d("coordenadas", x1 + "," + y1);
+
                 if(modoTraco.equals(TRACOLIVRE)){
-                    correntPath.lineTo(event.getX(), event.getY());
+                    correntPath.lineTo(x1, y1);
                 }
-                if(modoTraco.equals(TRACOCIRCULO)){
-                    Double f = (double) ((event.getX() - x0) * (event.getX() - x0));
-                    Double raio = Math.sqrt(f);
-                    correntPath.addCircle((x0, y0));
-                    //mPath.addCircle(x0,y0,100,Path.Direction.CCW
-
+                else if(modoTraco.equals(TRACOCIRCULO)){
+                    correntPath.reset();
+                    float dx = x1 - x0;
+                    float dy = y1 - y0;
+                    float raio = (float) Math.sqrt(dx * dx + dy * dy);
+                    correntPath.addCircle(x0, y0, raio, Path.Direction.CW);
                 }
-
-
+                else if(modoTraco.equals(TRACOQUADRADO)){
+                    correntPath.reset();
+                    correntPath.addRect(
+                            Math.min(x0, x1),
+                            Math.min(y0, y1),
+                            Math.max(x0, x1),
+                            Math.max(y0, y1),
+                            Path.Direction.CW
+                    );
+                }
+                else if(modoTraco.equals(TRACOLINHA)){
+                    correntPath.reset();
+                    correntPath.moveTo(x0, y0);
+                    correntPath.lineTo(x1, y1);
+                }
                 break;
+
             case MotionEvent.ACTION_UP:
                 addCamada();
                 break;

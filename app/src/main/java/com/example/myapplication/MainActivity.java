@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.skydoves.colorpickerview.ColorEnvelope;
 import com.skydoves.colorpickerview.ColorPickerDialog;
@@ -16,7 +17,7 @@ import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
 public class  MainActivity extends AppCompatActivity {
     Button buttonMudaCor;
     SimplePaint simplePaint;
-    ImageButton buttonCirculo, buttonLivre;
+    ImageView buttonCirculo, buttonLivre, buttonQuadrado, buttonLinha;
     public void mudaCor(ColorEnvelope envelope){
         simplePaint.mudaCor(envelope.getColor());
     }
@@ -30,9 +31,13 @@ public class  MainActivity extends AppCompatActivity {
         simplePaint = findViewById(R.id.simplePaint);
         buttonCirculo = findViewById(R.id.imageCirculo);
         buttonLivre = findViewById(R.id.imageTraco);
+        buttonQuadrado = findViewById(R.id.imageQuadrado);
+        buttonLinha = findViewById(R.id.imageLinha);
 
         buttonLivre.setOnClickListener(v -> {simplePaint.mudarParaLivre();});
         buttonCirculo.setOnClickListener(v -> {simplePaint.mudarParaCirculo();});
+        buttonQuadrado.setOnClickListener(v -> {simplePaint.mudarParaQuadrado();});
+        buttonLinha.setOnClickListener(v -> {simplePaint.mudarParaLinha();});
 
         buttonMudaCor.setOnClickListener(v -> {
             new ColorPickerDialog.Builder(this)
@@ -52,9 +57,9 @@ public class  MainActivity extends AppCompatActivity {
                                     dialogInterface.dismiss();
                                 }
                             })
-                    .attachAlphaSlideBar(true) // the default value is true.
-                    .attachBrightnessSlideBar(true)  // the default value is true.
-                    .setBottomSpace(12) // set a bottom space between the last slidebar and buttons.
+                    .attachAlphaSlideBar(true)
+                    .attachBrightnessSlideBar(true)
+                    .setBottomSpace(12)
                     .show();
         });
 
